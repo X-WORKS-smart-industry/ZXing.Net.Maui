@@ -35,7 +35,10 @@ namespace ZXing.Net.Maui
 		{
 		}
 
-		protected override NativePlatformCameraPreviewView CreatePlatformView()
+        public new ICameraView VirtualView
+            => (ICameraView)(this as IViewHandler).VirtualView;
+
+        protected override NativePlatformCameraPreviewView CreatePlatformView()
 		{
 			if (cameraManager == null)
 				cameraManager = new(MauiContext, VirtualView?.CameraLocation ?? CameraLocation.Rear);
