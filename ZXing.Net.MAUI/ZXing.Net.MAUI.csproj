@@ -2,15 +2,15 @@
 	<PropertyGroup>
     <TargetFrameworks>net9.0-android;net9.0-ios;net9.0-maccatalyst</TargetFrameworks>
     <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net9.0-windows10.0.19041</TargetFrameworks>
-    <PackageId>ZXing.Net.Maui</PackageId>
+    <PackageId>xws.ZXing.Net.Maui</PackageId>
 		<Title>ZXing.Net.MAUI Barcode Scanner for .NET MAUI</Title>
-		<Authors>Redth</Authors>
+		<Authors>Redth, X-WORKS systems engineering GmbH</Authors>
 		<UseMaui>True</UseMaui>
 		<SingleProject>True</SingleProject>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<UseSystemResourceKeys>false</UseSystemResourceKeys>
-		<Copyright>Copyright © Redth</Copyright>
-		<PackageProjectUrl>https://github.com/redth/ZXing.Net.Maui</PackageProjectUrl>
+        <Copyright>Copyright © Redth</Copyright>
+		<PackageProjectUrl>https://github.com/X-WORKS-smart-industry/ZXing.Net.Maui</PackageProjectUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<GitThisAssemblyMetadata>True</GitThisAssemblyMetadata>
 		<RepositoryUrl>$(GitRepositoryUrl)</RepositoryUrl>

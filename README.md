@@ -1,3 +1,6 @@
+> [!NOTE]  
+> Forked from [https://github.com/Redth/ZXing.Net.Maui](https://github.com/Redth/ZXing.Net.Maui)
+
 # ZXing.Net.MAUI
 
 The successor to ZXing.Net.Mobile: barcode scanning and generation for .NET MAUI applications
