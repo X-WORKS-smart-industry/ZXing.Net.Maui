@@ -33,12 +33,13 @@ namespace ZXing.Net.Maui
 		{
 		}
 
-		private ICameraView NullableVirtualView => (this as IViewHandler)?.VirtualView as ICameraView;
+        public new ICameraView VirtualView
+            => (ICameraView)(this as IViewHandler).VirtualView;
 
-		protected override NativePlatformCameraPreviewView CreatePlatformView()
+        protected override NativePlatformCameraPreviewView CreatePlatformView()
 		{
 			if (cameraManager == null)
-				cameraManager = new(MauiContext, NullableVirtualView?.CameraLocation ?? CameraLocation.Rear);
+				cameraManager = new(MauiContext, VirtualView?.CameraLocation ?? CameraLocation.Rear);
 			var v = cameraManager.CreateNativeView();
 			return v;
 		}
@@ -57,7 +58,7 @@ namespace ZXing.Net.Maui
 		}
 
 		void CameraManager_FrameReady(object sender, CameraFrameBufferEventArgs e)
-			=> NullableVirtualView?.FrameReady(e);
+			=> VirtualView?.FrameReady(e);
 
         protected override void DisconnectHandler(NativePlatformCameraPreviewView nativeView)
 		{

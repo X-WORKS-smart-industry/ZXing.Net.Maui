@@ -39,12 +39,13 @@ namespace ZXing.Net.Maui
         protected Readers.IBarcodeReader BarcodeReader
             => barcodeReader ??= Services.GetService<Readers.IBarcodeReader>();
 
-        private ICameraBarcodeReaderView NullableVirtualView => (this as IViewHandler)?.VirtualView as ICameraBarcodeReaderView;
+        public new ICameraBarcodeReaderView VirtualView
+            => (ICameraBarcodeReaderView)(this as IViewHandler).VirtualView;
 
         protected override NativePlatformCameraPreviewView CreatePlatformView()
         {
             if (cameraManager == null)
-                cameraManager = new(MauiContext, NullableVirtualView?.CameraLocation ?? CameraLocation.Rear);
+                cameraManager = new(MauiContext, VirtualView?.CameraLocation ?? CameraLocation.Rear);
             var v = cameraManager.CreateNativeView();
             return v;
         }
@@ -77,14 +78,14 @@ namespace ZXing.Net.Maui
 
         private void CameraManager_FrameReady(object sender, CameraFrameBufferEventArgs e)
         {
-            NullableVirtualView?.FrameReady(e);
+            VirtualView?.FrameReady(e);
 
-            if (NullableVirtualView?.IsDetecting ?? false)
+            if (VirtualView?.IsDetecting ?? false)
             {
                 var barcodes = BarcodeReader.Decode(e.Data);
 
                 if (barcodes?.Any() ?? false)
-                    NullableVirtualView?.BarcodesDetected(new BarcodeDetectionEventArgs(barcodes));
+                    VirtualView?.BarcodesDetected(new BarcodeDetectionEventArgs(barcodes));
             }
         }
 
